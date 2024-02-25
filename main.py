@@ -70,6 +70,7 @@ class InventoryWindow(QWidget):
     self.layout = QGridLayout()
     self.setFixedWidth(125)
     self.layout.addWidget(QLabel("Hello Inventory!"))
+    # Add inventory 
     self.setLayout(self.layout)
 
 
