@@ -32,6 +32,7 @@ class MainAppWindow(QMainWindow):
     super().__init__()
     self.gameWindow = GameWindow()
     self.setCentralWidget(self.gameWindow)
+    self.setWindowTitle("Etheria v0.1.0")
 
 
 class GameWindow(QWidget):
@@ -39,9 +40,9 @@ class GameWindow(QWidget):
     super().__init__(parent)
     self.layout = QGridLayout()
     self.make_meta_windows()
-    self.layout.addWidget(self.map, 0,0,2,2)
-    self.layout.addWidget(self.inv, 0,2,4,1)
-    self.layout.addWidget(self.chat, 2,0,1,2)
+    self.layout.addWidget(self.map, 0,0)
+    self.layout.addWidget(self.inv, 0,2,2,1, Qt.AlignCenter)
+    self.layout.addWidget(self.chat, 2,0,1,1,Qt.AlignBottom)
     self.setLayout(self.layout)
 
   def make_meta_windows(self):
@@ -59,7 +60,7 @@ class MapWindow(QWidget):
     self.view.layout = QGridLayout()
     self.view.layout.addWidget(QLabel("Hello Map!"))
     self.view.setLayout(self.view.layout)
-    self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.setMinimumSize(400,300)
     self.setLayout(self.layout)
  
 
@@ -82,7 +83,7 @@ class ChatWindow(QWidget):
 
   def make_widgets(self):
     self.log = QTextEdit()
-    self.log.setFixedHeight(100)
+    self.log.setMaximumHeight(75)
 
   def apply_layout(self):
     self.layout.addWidget(self.log)
