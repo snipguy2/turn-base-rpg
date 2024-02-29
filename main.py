@@ -73,14 +73,30 @@ class InventoryWindow(QWidget):
     # Add inventory 
     self.setLayout(self.layout)
 
+  def make_widgets(self):
+    self.itemList = []
 
+class InvItemFrame(QFrame):
+  def __init__(self, parent=None):
+    super().__init__(parent)
+    self.data = None #: should be object pulled from db
+    self.icon = None
+
+  def refresh_display(self):
+    if self.data == None:
+      return
+    for k,v in self.data.__dict__.items():
+      setattr(self, k, v)
+
+    
 class ChatWindow(QWidget):
+  """Container window that shows logs/chat.
+  """
   def __init__(self, parent=None):
     super().__init__(parent)
     self.layout = QHBoxLayout()
     self.make_widgets()
     self.apply_layout()
-
 
   def make_widgets(self):
     self.log = QTextEdit()
@@ -89,6 +105,7 @@ class ChatWindow(QWidget):
   def apply_layout(self):
     self.layout.addWidget(self.log)
     self.setLayout(self.layout)
+
 
 if __name__ == "__main__":
   app = QApplication(sys.argv)
