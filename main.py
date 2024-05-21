@@ -8,6 +8,7 @@
 
 #std imports
 import sys, os, pickle
+import GameItem
 
 #PyQt imports
 from PyQt5.QtWidgets import (
@@ -72,9 +73,13 @@ class InventoryWindow(QWidget):
     self.layout.addWidget(QLabel("Hello Inventory!"))
     # Add inventory 
     self.setLayout(self.layout)
+    
 
   def make_widgets(self):
     self.itemList = []
+
+  def add_item(self, item:GameItem):
+    self.itemList.append(item)
 
 class InvItemFrame(QFrame):
   def __init__(self, parent=None):
